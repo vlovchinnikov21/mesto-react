@@ -1,5 +1,6 @@
 import Header from './Header';
-import Main from './Main'
+import Main from './Main';
+import Footer from './Footer';
 
 function App() {
   return (
@@ -9,9 +10,7 @@ function App() {
 
         <Main />
 
-        <footer className="footer">
-          <p className="footer__copyright">&copy; 2022 Mesto Russia</p>
-        </footer>
+        <Footer />
 
         <template id="card-template">
           <article className="card">
