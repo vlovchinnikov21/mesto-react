@@ -1,17 +1,11 @@
-import mainLogo from '../images/logo.svg';
+import Header from './Header';
 import pencil from '../images/edit-button-image.svg';
 import plus from '../images/add-button-image.svg';
 function App() {
   return (
     <>
       <div className="page">
-        <header className="header">
-          <img
-            src={mainLogo}
-            alt="лого-место"
-            className="logo"
-          />
-        </header>
+        <Header />
 
         <main>
           <section className="profile">
