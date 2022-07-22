@@ -16,17 +16,17 @@ function App() {
   }
 
   function handleEditAvatarClick() {
-    setAddPlacePopupOpen(true);
+    setEditAvatarPopupOpen(true);
   }
 
   function handleEditAddPlaceClick() {
-    setEditAvatarPopupOpen(true);
+    setAddPlacePopupOpen(true);
   }
 
   function closeAllPopups() {
     setEditProfilePopupOpen(false);
-    setAddPlacePopupOpen(false);
     setEditAvatarPopupOpen(false);
+    setAddPlacePopupOpen(false);
   }
 
   return (
