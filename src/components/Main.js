@@ -4,7 +4,7 @@ import plus from '../images/add-button-image.svg';
 import { api } from '../utils/api';
 import Card from './Card';
 
-function Main({ onEditProfile, onEditAvatar, onAddPlace }) {
+function Main({ onEditProfile, onEditAvatar, onAddPlace, onCardClick }) {
   const [userName, setUserName] = React.useState();
   const [userDescription, setUserDescription] = React.useState();
   const [userAvatar, setUserAvatar] = React.useState();
@@ -16,6 +16,7 @@ function Main({ onEditProfile, onEditAvatar, onAddPlace }) {
       setUserDescription(item.about);
       setUserAvatar(item.avatar);
     })
+    .catch((err) => console.log(err))
   }, []);
 
   React.useEffect(() => {
@@ -27,7 +28,8 @@ function Main({ onEditProfile, onEditAvatar, onAddPlace }) {
         likes: item.likes
       })))
     })
-  })
+    .catch((err) => console.log(err))
+  }, []);
 
   return (
     <>
@@ -75,7 +77,7 @@ function Main({ onEditProfile, onEditAvatar, onAddPlace }) {
         <section className="places">
           <ul className="cards">
           {
-            cards.map(({id, ...props}) => <Card key={id} {...props} />)
+            cards.map(({id, ...props}) => <Card key={id} {...props} card={{id, ...props}} onCardClick={onCardClick} />)
           }
           </ul>
         </section>
