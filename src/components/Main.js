@@ -5,30 +5,36 @@ import { api } from '../utils/api';
 import Card from './Card';
 
 function Main({ onEditProfile, onEditAvatar, onAddPlace, onCardClick }) {
-  const [userName, setUserName] = React.useState();
-  const [userDescription, setUserDescription] = React.useState();
-  const [userAvatar, setUserAvatar] = React.useState();
+  const [userName, setUserName] = React.useState('');
+  const [userDescription, setUserDescription] = React.useState('');
+  const [userAvatar, setUserAvatar] = React.useState('');
   const [cards, setCards] = React.useState([]);
 
   React.useEffect(() => {
-    api.getUserProfile().then((item) => {
-      setUserName(item.name);
-      setUserDescription(item.about);
-      setUserAvatar(item.avatar);
-    })
-    .catch((err) => console.log(err))
+    api
+      .getUserProfile()
+      .then((item) => {
+        setUserName(item.name);
+        setUserDescription(item.about);
+        setUserAvatar(item.avatar);
+      })
+      .catch((err) => console.log(err));
   }, []);
 
   React.useEffect(() => {
-    api.getInitialCards().then((items) => {
-      setCards(items.map((item) => ({
-        id: item._id,
-        name: item.name,
-        link: item.link,
-        likes: item.likes
-      })))
-    })
-    .catch((err) => console.log(err))
+    api
+      .getInitialCards()
+      .then((items) => {
+        setCards(
+          items.map((item) => ({
+            id: item._id,
+            name: item.name,
+            link: item.link,
+            likes: item.likes,
+          }))
+        );
+      })
+      .catch((err) => console.log(err));
   }, []);
 
   return (
@@ -37,7 +43,11 @@ function Main({ onEditProfile, onEditAvatar, onAddPlace, onCardClick }) {
         <section className="profile">
           <div className="profile-info">
             <div className="profile-info__avatar">
-              <img src={userAvatar} alt="аватарка" className="profile-info__image" />
+              <img
+                src={userAvatar}
+                alt="аватарка"
+                className="profile-info__image"
+              />
               <div
                 className="profile-info__avatar-button"
                 onClick={onEditAvatar}
@@ -76,9 +86,14 @@ function Main({ onEditProfile, onEditAvatar, onAddPlace, onCardClick }) {
 
         <section className="places">
           <ul className="cards">
-          {
-            cards.map(({id, ...props}) => <Card key={id} {...props} card={{id, ...props}} onCardClick={onCardClick} />)
-          }
+            {cards.map(({ id, ...props }) => (
+              <Card
+                key={id}
+                {...props}
+                card={{ id, ...props }}
+                onCardClick={onCardClick}
+              />
+            ))}
           </ul>
         </section>
       </main>

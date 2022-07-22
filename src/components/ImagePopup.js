@@ -2,7 +2,6 @@ import React from 'react';
 
 function ImagePopup(props) {
   return (
-    <>
       <section className={`popup popup_picture ${props.card ? 'popup_opened' : ''}`}>
         <div className="popup__picture-container">
           <button type="button" className="popup__close-button" onClick={props.onClose}></button>
@@ -12,7 +11,6 @@ function ImagePopup(props) {
           </figure>
         </div>
       </section>
-    </>
   );
 }
 

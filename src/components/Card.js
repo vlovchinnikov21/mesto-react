@@ -6,7 +6,6 @@ function Card(props) {
   }
 
   return (
-    <>
       <article className="card">
         <button type="button" className="card__delete-button"></button>
         <img src={props.link} alt={props.name} className="card__image" onClick={handleCardClick} />
@@ -18,7 +17,6 @@ function Card(props) {
           </div>
         </div>
       </article>
-    </>
   );
 }
 

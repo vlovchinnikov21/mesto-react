@@ -3,7 +3,6 @@ import mainLogo from '../images/logo.svg';
 
 function Header() {
     return (
-      <>
         <header className="header">
           <img
             src={mainLogo}
@@ -11,7 +10,6 @@ function Header() {
             className="logo"
           />
         </header>
-      </>
     );
 }
 
