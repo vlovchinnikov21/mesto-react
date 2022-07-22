@@ -6,12 +6,35 @@ import PopupWithForm from './PopupWithForm';
 import ImagePopup from './ImagePopup';
 
 function App() {
+
+  const [isEditProfilePopupOpen, setEditProfilePopupOpen] = React.useState(false);
+  const [isAddPlacePopupOpen, setAddPlacePopupOpen] = React.useState(false);
+  const [isEditAvatarPopupOpen, setEditAvatarPopupOpen] = React.useState(false);
+
+  function handleEditProfileClick() {
+    setEditProfilePopupOpen(true);
+  }
+
+  function handleEditAvatarClick() {
+    setAddPlacePopupOpen(true);
+  }
+
+  function handleEditAddPlaceClick() {
+    setEditAvatarPopupOpen(true);
+  }
+
+  function closeAllPopups() {
+    setEditProfilePopupOpen(false);
+    setAddPlacePopupOpen(false);
+    setEditAvatarPopupOpen(false);
+  }
+
   return (
     <>
       <div className="page">
         <Header />
 
-        <Main />
+        <Main onEditProfile={handleEditProfileClick} onEditAvatar={handleEditAvatarClick} onAddPlace={handleEditAddPlaceClick} />
 
         <Footer />
 
@@ -30,7 +53,7 @@ function App() {
         </template>
       </div>
 
-      <PopupWithForm name="profile-edit" title="Редактировать профиль">
+      <PopupWithForm name="profile-edit" title="Редактировать профиль" isOpen={isEditProfilePopupOpen} onClose={closeAllPopups}>
             <div className="popup__input-container">
               <input
                 type="text"
@@ -59,7 +82,7 @@ function App() {
             </div>
       </PopupWithForm>
 
-      <PopupWithForm name="add-card" title="Новое место">
+      <PopupWithForm name="add-card" title="Новое место" isOpen={isAddPlacePopupOpen} onClose={closeAllPopups}>
             <div className="popup__input-container">
               <input
                 type="text"
@@ -86,7 +109,7 @@ function App() {
             </div>
       </PopupWithForm>
 
-      <PopupWithForm name="avatar-edit" title="Обновить аватар">
+      <PopupWithForm name="avatar-edit" title="Обновить аватар" isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups}>
             <div className="popup__input-container">
               <input
                 type="url"
@@ -100,7 +123,7 @@ function App() {
             </div>
       </PopupWithForm>
 
-      <PopupWithForm name="delete-confirm" title="Вы уверены?" />
+      <PopupWithForm name="delete-confirm" title="Вы уверены?" onClose={closeAllPopups} />
 
       <ImagePopup />
     </>

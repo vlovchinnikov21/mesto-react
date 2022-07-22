@@ -2,18 +2,8 @@ import React from 'react';
 import pencil from '../images/edit-button-image.svg';
 import plus from '../images/add-button-image.svg';
 
-function Main() {
-  function handleEditProfileClick() {
-    document.querySelector('.popup_profile-edit').classList.add('popup_opened');
-  }
-
-  function handleEditAvatarClick() {
-    document.querySelector('.popup_avatar-edit').classList.add('popup_opened');
-  }
-
-  function handleEditAddPlaceClick() {
-    document.querySelector('.popup_add-card').classList.add('popup_opened');
-  }
+function Main({onEditProfile, onEditAvatar, onAddPlace}) {
+  
   return (
     <>
       <main>
@@ -21,7 +11,7 @@ function Main() {
           <div className="profile-info">
             <div className="profile-info__avatar">
               <img src="#" alt="аватарка" className="profile-info__image" />
-              <div className="profile-info__avatar-button" onClick={handleEditAvatarClick}></div>
+              <div className="profile-info__avatar-button" onClick={onEditAvatar}></div>
             </div>
             <div className="profile-info__text-box">
               <div className="profile-info__name-box">
@@ -29,7 +19,7 @@ function Main() {
                 <button
                   type="button"
                   className="profile-info__edit-button"
-                  onClick={handleEditProfileClick}
+                  onClick={onEditProfile}
                 >
                   <img
                     src={pencil}
@@ -41,7 +31,7 @@ function Main() {
               <p className="profile-info__description"></p>
             </div>
           </div>
-          <button type="button" className="profile__add-button" onClick={handleEditAddPlaceClick}>
+          <button type="button" className="profile__add-button" onClick={onAddPlace}>
             <img
               src={plus}
               alt="плюсик"
