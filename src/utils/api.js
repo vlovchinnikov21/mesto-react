@@ -48,16 +48,9 @@ class Api {
     }).then(this._checkResponse);
   }
 
-  like(id) {
+  changeLikeCardStatus(id, isLiked) {
     return fetch(this._url + `/cards/${id}/likes`, {
-      method: 'PUT',
-      headers: this._headers,
-    }).then(this._checkResponse);
-  }
-
-  notLike(id) {
-    return fetch(this._url + `/cards/${id}/likes`, {
-      method: 'DELETE',
+      method: `${isLiked ? 'PUT' : 'DELETE'}`,
       headers: this._headers,
     }).then(this._checkResponse);
   }
@@ -92,4 +85,4 @@ const api = new Api({
   },
 });
 
-export {api}
+export { api };

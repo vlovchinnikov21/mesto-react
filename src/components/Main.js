@@ -3,23 +3,11 @@ import pencil from '../images/edit-button-image.svg';
 import plus from '../images/add-button-image.svg';
 import { api } from '../utils/api';
 import Card from './Card';
+import { CurrentUserContext } from '../contexts/CurrentUserContext';
 
 function Main({ onEditProfile, onEditAvatar, onAddPlace, onCardClick }) {
-  const [userName, setUserName] = React.useState('');
-  const [userDescription, setUserDescription] = React.useState('');
-  const [userAvatar, setUserAvatar] = React.useState('');
   const [cards, setCards] = React.useState([]);
-
-  React.useEffect(() => {
-    api
-      .getUserProfile()
-      .then((item) => {
-        setUserName(item.name);
-        setUserDescription(item.about);
-        setUserAvatar(item.avatar);
-      })
-      .catch((err) => console.log(err));
-  }, []);
+  const currentUser = React.useContext(CurrentUserContext);
 
   React.useEffect(() => {
     api
@@ -37,6 +25,16 @@ function Main({ onEditProfile, onEditAvatar, onAddPlace, onCardClick }) {
       .catch((err) => console.log(err));
   }, []);
 
+  function handleCardLike(card) {
+    // Снова проверяем, есть ли уже лайк на этой карточке
+    const isLiked = card.likes.some((i) => i._id === currentUser._id);
+
+    // Отправляем запрос в API и получаем обновлённые данные карточки
+    api.changeLikeCardStatus(card._id, !isLiked).then((newCard) => {
+      setCards((state) => state.map((c) => (c._id === card._id ? newCard : c)));
+    });
+  }
+
   return (
     <>
       <main>
@@ -44,7 +42,7 @@ function Main({ onEditProfile, onEditAvatar, onAddPlace, onCardClick }) {
           <div className="profile-info">
             <div className="profile-info__avatar">
               <img
-                src={userAvatar}
+                src={currentUser.avatar}
                 alt="аватарка"
                 className="profile-info__image"
               />
@@ -55,7 +53,7 @@ function Main({ onEditProfile, onEditAvatar, onAddPlace, onCardClick }) {
             </div>
             <div className="profile-info__text-box">
               <div className="profile-info__name-box">
-                <h1 className="profile-info__name">{userName}</h1>
+                <h1 className="profile-info__name">{currentUser.name}</h1>
                 <button
                   type="button"
                   className="profile-info__edit-button"
@@ -68,7 +66,7 @@ function Main({ onEditProfile, onEditAvatar, onAddPlace, onCardClick }) {
                   />
                 </button>
               </div>
-              <p className="profile-info__description">{userDescription}</p>
+              <p className="profile-info__description">{currentUser.about}</p>
             </div>
           </div>
           <button
@@ -92,6 +90,7 @@ function Main({ onEditProfile, onEditAvatar, onAddPlace, onCardClick }) {
                 {...props}
                 card={{ id, ...props }}
                 onCardClick={onCardClick}
+                onCardLike={handleCardLike}
               />
             ))}
           </ul>
