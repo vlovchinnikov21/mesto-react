@@ -4,6 +4,7 @@ import Main from './Main';
 import Footer from './Footer';
 import PopupWithForm from './PopupWithForm';
 import ImagePopup from './ImagePopup';
+import EditProfilePopup from './EditProfilePopup';
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
 import { api } from '../utils/api';
 
@@ -24,6 +25,16 @@ function App() {
       })
       .catch((err) => console.log(err));
   }, []);
+
+  function handleUpdateUser(items) {
+    api
+      .setUserProfile(items)
+      .then((item) => {
+        setCurrentUser(item);
+        closeAllPopups();
+      })
+      .catch((err) => console.log(err));
+  }
 
   function handleEditProfileClick() {
     setEditProfilePopupOpen(true);
@@ -63,40 +74,11 @@ function App() {
         <Footer />
       </div>
 
-      <PopupWithForm
-        name="profile-edit"
-        title="Редактировать профиль"
-        btnText="Сохранить"
+      <EditProfilePopup
         isOpen={isEditProfilePopupOpen}
         onClose={closeAllPopups}
-      >
-        <div className="popup__input-container">
-          <input
-            type="text"
-            id="user-name"
-            name="name"
-            className="popup__input popup__input_type_name"
-            placeholder="Ваше Имя"
-            required
-            minLength="2"
-            maxLength="40"
-          />
-          <span className="popup__error popup__error-user-name"></span>
-        </div>
-        <div className="popup__input-container">
-          <input
-            type="text"
-            id="user-description"
-            name="about"
-            className="popup__input popup__input_type_description"
-            placeholder="Расскажите о себе"
-            required
-            minLength="2"
-            maxLength="200"
-          />
-          <span className="popup__error popup__error-user-description"></span>
-        </div>
-      </PopupWithForm>
+        onUpdateUser={handleUpdateUser}
+      />
 
       <PopupWithForm
         name="add-card"
