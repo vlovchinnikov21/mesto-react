@@ -5,6 +5,7 @@ import Footer from './Footer';
 import PopupWithForm from './PopupWithForm';
 import ImagePopup from './ImagePopup';
 import EditProfilePopup from './EditProfilePopup';
+import EditAvatarPopup from './EditAvatarPopup';
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
 import { api } from '../utils/api';
 
@@ -29,6 +30,16 @@ function App() {
   function handleUpdateUser(items) {
     api
       .setUserProfile(items)
+      .then((item) => {
+        setCurrentUser(item);
+        closeAllPopups();
+      })
+      .catch((err) => console.log(err));
+  }
+
+  function handleUpdateAvatar(items) {
+    api
+      .editUserAvatar(items)
       .then((item) => {
         setCurrentUser(item);
         closeAllPopups();
@@ -113,25 +124,11 @@ function App() {
         </div>
       </PopupWithForm>
 
-      <PopupWithForm
-        name="avatar-edit"
-        title="Обновить аватар"
-        btnText="Сохранить"
+      <EditAvatarPopup
         isOpen={isEditAvatarPopupOpen}
         onClose={closeAllPopups}
-      >
-        <div className="popup__input-container">
-          <input
-            type="url"
-            id="avatar"
-            name="avatar"
-            className="popup__input popup__input_type_avatar"
-            placeholder="Ссылка на изображение"
-            required
-          />
-          <span className="popup__error popup__error-avatar"></span>
-        </div>
-      </PopupWithForm>
+        onUpdateAvatar={handleUpdateAvatar}
+      />
 
       <PopupWithForm
         name="delete-confirm"
