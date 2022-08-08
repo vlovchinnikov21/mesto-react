@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Header from './Header';
 import Main from './Main';
 import Footer from './Footer';
@@ -11,15 +11,14 @@ import { CurrentUserContext } from '../contexts/CurrentUserContext';
 import { api } from '../utils/api';
 
 function App() {
-  const [isEditProfilePopupOpen, setEditProfilePopupOpen] =
-    React.useState(false);
-  const [isAddPlacePopupOpen, setAddPlacePopupOpen] = React.useState(false);
-  const [isEditAvatarPopupOpen, setEditAvatarPopupOpen] = React.useState(false);
-  const [selectedCard, setSelectedCard] = React.useState(null);
-  const [cards, setCards] = React.useState([]);
-  const [currentUser, setCurrentUser] = React.useState({});
+  const [isEditProfilePopupOpen, setEditProfilePopupOpen] = useState(false);
+  const [isAddPlacePopupOpen, setAddPlacePopupOpen] = useState(false);
+  const [isEditAvatarPopupOpen, setEditAvatarPopupOpen] = useState(false);
+  const [selectedCard, setSelectedCard] = useState(null);
+  const [cards, setCards] = useState([]);
+  const [currentUser, setCurrentUser] = useState({});
 
-  React.useEffect(() => {
+  useEffect(() => {
     api
       .getUserProfile()
       .then((items) => {
@@ -28,7 +27,7 @@ function App() {
       .catch((err) => console.log(err));
   }, []);
 
-  React.useEffect(() => {
+  useEffect(() => {
     api
       .getInitialCards()
       .then((items) => {
@@ -49,7 +48,7 @@ function App() {
     api
       .delete(card._id)
       .then(() => {
-        setCards(cards.filter((item) => item !== card));
+        setCards((state) => state.filter((c) => c._id !== card._id));
       })
       .catch((err) => console.log(err));
   }

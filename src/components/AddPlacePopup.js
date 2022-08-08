@@ -1,9 +1,14 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PopupWithForm from './PopupWithForm';
 
 function AddPlacePopup(props) {
-  const [name, setName] = React.useState('');
-  const [link, setLink] = React.useState('');
+  const [name, setName] = useState('');
+  const [link, setLink] = useState('');
+
+  useEffect(() => {
+    setName('');
+    setLink(``);
+  }, [props.isOpen]);
 
   function handleNameChange(e) {
     setName(e.target.value);
@@ -42,6 +47,7 @@ function AddPlacePopup(props) {
           minLength="2"
           maxLength="30"
           onChange={handleNameChange}
+          value={name || ''}
         />
         <span className="popup__error popup__error-card-description"></span>
       </div>
@@ -54,6 +60,7 @@ function AddPlacePopup(props) {
           placeholder="Ссылка на изображение"
           required
           onChange={handleLinkChange}
+          value={link || ''}
         />
         <span className="popup__error popup__error-card-image-link"></span>
       </div>

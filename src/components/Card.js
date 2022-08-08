@@ -45,7 +45,7 @@ function Card(props) {
             type="button"
             className={cardLikeButtonClassName}
             onClick={handleLikeClick}
-          ></button>
+          />
           <p className="card__like-counter">{props.card.likes.length}</p>
         </div>
       </div>
