@@ -43,7 +43,7 @@
 ### `npm test`
 
 Запускает тестовый прогон.\
-Перейдите по ссылка для большей информации [running tests](https://facebook.github.io/create-react-app/docs/running-tests).
+Дополнительную информацию по тестам смотрите [тут](https://facebook.github.io/create-react-app/docs/running-tests).
 
 ### `npm run build`
 
@@ -53,7 +53,7 @@
 Сборка минифицирована, а имена файлов содержат хэши.\
 Приложение готово к деплою!
 
-Перейдите по ссылке для большей информации [deployment](https://facebook.github.io/create-react-app/docs/deployment).
+Дополнительную информацию по деплою смотрите [тут](https://facebook.github.io/create-react-app/docs/deployment).
 
 
 
