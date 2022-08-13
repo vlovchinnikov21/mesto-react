@@ -24,36 +24,36 @@
 * [Ссылка на проект на JS в GitHubPages](https://vlovchinnikov21.github.io/mesto/)
 * [Ссылка на проект на React в GitHubPages](https://vlovchinnikov21.github.io/mesto-react/)
 
-# Getting Started with Create React App
+# Начало работы с Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Этот проект запущен с помощью [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Доступные скрипты
 
-In the project directory, you can run:
+В директории проекты вы можете запустить
 
 ### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Запускает приложение в режиме разработки.\
+Откройте [http://localhost:3000](http://localhost:3000) в своем браузере.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Страница перезагрузится, когда вы внесете изменения.\
+Вы также можете посмотреть ошибки ссылок в консоли.
 
 ### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Запускает тестовый прогон.\
+Перейдите по ссылка для большей информации [running tests](https://facebook.github.io/create-react-app/docs/running-tests).
 
 ### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Запускает сборку проекта в папку 'build'.\
+Оптимизирует сборку для наилучшей оптимизации.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Сборка минифицирована, а имена файлов содержат хэши.\
+Приложение готово к деплою!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Перейдите по ссылке для большей информации [deployment](https://facebook.github.io/create-react-app/docs/deployment).
 
 
 
